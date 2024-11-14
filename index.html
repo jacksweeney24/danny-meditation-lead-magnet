@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Group Meditation with Danny Miranda</title>
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;   
+            color: #333;
+            background-color: #ffffff;
+        }
+
+        /* Hero section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: row;
+            max-width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        .content-side {
+            flex: 1;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            max-width: 50%;
+        }
+
+        .image-side {
+            flex: 1;
+            position: relative;
+            background-color: #ffffff;
+            margin: 40px;
+        }
+
+        .meditation-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        /* Typography */
+        h1 {
+            font-size: 4rem;
+            font-weight: 900;
+            margin-bottom: 2rem;
+            line-height: 1.1;
+            text-transform: uppercase;
+        }
+
+        .date {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .description {
+            font-size: 1.5rem;
+            margin-bottom: 3rem;
+            font-style: italic;
+        }
+
+        /* Form styles */
+        .signup-section h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .signup-form {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        input {
+            flex: 1;
+            padding: 1rem;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        button {
+            padding: 1rem 2rem;
+            background: #55acee;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+
+        /* Add new styles for the host section */
+        .host-section {
+            margin-top: 3rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .host-photo {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .host {
+            margin-top: 0;  /* Remove previous margin */
+            font-size: 1.2rem;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .signup-form {
+                flex-direction: column;
+            }
+            
+            .hero {
+                flex-direction: column;
+            }
+            
+            .content-side {
+                max-width: 100%;
+                padding: 2rem;
+            }
+            
+            .image-side {
+                min-height: 50vh;
+            }
+        }
+
+        /* Target the specific Kit form classes */
+        .formkit-submit,
+        button.formkit-submit {
+            padding: 1rem 1rem !important;
+            background: #55acee !important;
+            background-color: #55acee !important;
+            color: white !important;
+            border: none !important;
+            border-radius: 4px !important;
+            font-size: 1rem !important;
+            font-weight: 600 !important;
+            cursor: pointer !important;
+            text-transform: uppercase !important;
+            height: auto !important;
+            min-width: fit-content !important;
+            max-width: 280px !important;
+        }
+
+        /* Target the form fields */
+        .formkit-field input {
+            width: 100% !important;
+            padding: 1rem !important;
+            border: 2px solid #ddd !important;
+            border-radius: 4px !important;
+            font-size: 1rem !important;
+        }
+
+        /* Make the form layout flex */
+        .seva-fields.formkit-fields {
+            display: flex !important;
+            gap: 1rem !important;
+            max-width: 100% !important;
+            align-items: center !important;
+        }
+
+        /* Responsive layout */
+        @media (max-width: 768px) {
+            .seva-fields.formkit-fields {
+                flex-direction: column !important;
+                width: 100% !important;
+            }
+
+            .formkit-field,
+            .formkit-submit {
+                flex: 1 !important;
+                max-width: 100% !important;
+                width: 100% !important;
+            }
+
+            .formkit-field input,
+            .formkit-submit button {
+                width: 100% !important;
+                max-width: 100% !important;
+            }
+
+            /* Remove any max-width constraints on mobile */
+            .formkit-submit {
+                max-width: none !important;
+            }
+        }
+
+        /* Target the form container */
+        .seva-fields.formkit-fields {
+            display: flex !important;
+            gap: 1rem !important;
+            max-width: 100% !important;
+            align-items: center !important;
+        }
+
+        /* Style the input field container */
+        .formkit-field {
+            flex: 3 !important;
+            height: 56px !important;
+        }
+
+        /* Style the input */
+        .formkit-field input {
+            width: 100% !important;
+            height: 56px !important;
+            padding: 0 1rem !important;
+            border: 2px solid #ddd !important;
+            border-radius: 4px !important;
+            font-size: 1rem !important;
+            box-sizing: border-box !important;
+            line-height: 56px !important;
+        }
+
+        /* Style the submit button container */
+        .formkit-submit {
+            flex: 1 !important;
+            max-width: 280px !important;
+            height: 56px !important;
+        }
+
+        /* Style the button itself */
+        .formkit-submit button,
+        button.formkit-submit {
+            width: 100% !important;
+            height: 56px !important;
+            min-height: 56px !important;
+            max-height: 56px !important;
+            line-height: 56px !important;
+            padding: 0 1.5rem !important;
+            background: #55acee !important;
+            background-color: #55acee !important;
+            color: white !important;
+            border: none !important;
+            border-radius: 4px !important;
+            font-size: 1rem !important;
+            font-weight: 600 !important;
+            cursor: pointer !important;
+            text-transform: uppercase !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+        }
+
+        /* Target any spans inside the button */
+        .formkit-submit button span,
+        button.formkit-submit span {
+            line-height: 1 !important;
+        }
+
+        /* Responsive layout for mobile */
+        @media (max-width: 768px) {
+            .seva-fields.formkit-fields {
+                flex-direction: column !important;
+            }
+
+            .formkit-field,
+            .formkit-submit {
+                flex: 1 !important;
+                max-width: 100% !important;
+                width: 100% !important;
+            }
+
+            .formkit-submit button {
+                width: 100% !important;
+            }
+        }
+
+        /* Mobile styles */
+        @media (max-width: 768px) {
+            .seva-fields.formkit-fields {
+                flex-direction: column !important;
+                width: 100% !important;
+                gap: 1rem !important;
+            }
+
+            .formkit-field,
+            .formkit-submit {
+                width: 100% !important;
+                max-width: 100% !important;
+                flex: none !important;
+            }
+
+            .formkit-field input,
+            .formkit-submit button {
+                width: 100% !important;
+                max-width: none !important;
+            }
+
+            /* Override any inline styles */
+            .formkit-submit[style] {
+                width: 100% !important;
+                max-width: 100% !important;
+            }
+
+            .formkit-submit button[style] {
+                width: 100% !important;
+                max-width: none !important;
+            }
+        }
+
+        /* Button and hover states */
+        .formkit-submit button,
+        .formkit-submit button:hover,
+        .formkit-submit button:focus,
+        .formkit-submit button:active {
+            width: 100% !important;
+            height: 56px !important;
+            background: #55acee !important;
+            background-color: #55acee !important;
+            color: white !important;
+            border: none !important;
+            border-radius: 4px !important;
+            font-size: 1rem !important;
+            font-weight: 600 !important;
+            cursor: pointer !important;
+            text-transform: uppercase !important;
+            transition: background-color 0.2s ease !important;
+        }
+
+        /* Optional: Add a slightly darker color on hover */
+        .formkit-submit button:hover {
+            background: #2795e9 !important;
+            background-color: #2795e9 !important;
+        }
+
+        /* Prevent any unwanted background changes */
+        .formkit-submit button * {
+            background: none !important;
+        }
+
+        /* Completely disable hover effects and text selection */
+        .formkit-submit button,
+        .formkit-submit button:hover,
+        .formkit-submit button:focus,
+        .formkit-submit button:active,
+        .formkit-submit button *,
+        .formkit-submit button *:hover,
+        .formkit-submit button *:focus,
+        .formkit-submit button *:active {
+            -webkit-user-select: none !important;
+            -moz-user-select: none !important;
+            -ms-user-select: none !important;
+            user-select: none !important;
+            background: #55acee !important;
+            background-color: #55acee !important;
+            color: white !important;
+            pointer-events: none !important;
+        }
+
+        /* Additional protection for text selection */
+        .formkit-submit button span {
+            -webkit-user-select: none !important;
+            -moz-user-select: none !important;
+            -ms-user-select: none !important;
+            user-select: none !important;
+            pointer-events: none !important;
+        }
+    </style>
+</head>
+<body>
+    <main class="hero">
+        <div class="content-side">
+            <h1>Online Group Meditation</h1>
+            <div class="date">Thursday, November 21 at 7pm CST</div>
+            <div class="description">5 minute breathwork followed by a 30 minute, unguided meditation</div>
+            
+            <div class="signup-section">
+                <h2>To register, enter your email:</h2>
+                <script async data-uid="3581d09f93" src="https://exciting-leader-7140.kit.com/3581d09f93/index.js"></script>
+            </div>
+            
+            <div class="host-section">
+                <img src="danny.webp" alt="Danny Miranda" class="host-photo">
+                <div class="host">Hosted by Danny Miranda</div>
+            </div>
+        </div>
+        <div class="image-side">
+            <img src="patrick.png" alt="Meditation" class="meditation-image">
+        </div>
+    </main>
+</body>
+</html>
