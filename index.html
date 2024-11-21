@@ -381,13 +381,31 @@
             user-select: none !important;
             pointer-events: none !important;
         }
+
+        /* Add this to the Typography section around line 57 */
+        .quote {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            font-style: italic;
+            color: #555;
+            line-height: 1.4;
+        }
+
+        /* Add this to the existing media query around line 130 */
+        @media (max-width: 768px) {
+            .quote {
+                font-size: 1.4rem;
+            }
+            /* ... existing mobile styles ... */
+        }
     </style>
 </head>
 <body>
     <main class="hero">
         <div class="content-side">
             <h1>Online Group Meditation</h1>
-            <div class="date">Wednesdays at 7pm CST</div>
+            <div class="quote">"Meditation is practicing the presence of God." - Paramahansa Yogananda</div>
+            <div class="date">(Most) Wednesdays at 7pm CST</div>
             <div class="description">5 minute breathwork followed by a 30 minute, unguided meditation</div>
             
             <div class="signup-section">
